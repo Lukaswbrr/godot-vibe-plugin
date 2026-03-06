@@ -18,13 +18,15 @@ response_style = """Return your answer in raw Json format instructions for Godot
 The values of the parameters can be a string, int, float, boolean, list or dictionary, depending on the context of the instruction.
 
 The JSON should have the following structure: 
-
-    "instruction": {
-        "parameter1": "value 1",
-        "parameter2": "value 2",
-        ...
+    0: {
+        "instruction": {
+            "parameter1": "value 1",
+            "parameter2": "value 2",
+            ...
+        }
     }
-    
+
+0 is the instruction number. Always increment by 1 when there is a new instruction.    
 Replace the instruction key name with the name of the instruction you want to execute and add the necessary parameters for that instruction.
 
 The possible instructions are:
