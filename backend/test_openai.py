@@ -13,24 +13,29 @@ client = OpenAI(
     api_key=token,
 )
 
-response_style = """Return your answer in raw Json format instructions for Godot Engine editor menu (used as a EditorScript).
+response_style = """Return your answer in raw Json format instructions for Godot Engine editor menu (used as a EditorScript) Do not.
 
 The values of the parameters can be a string, int, float, boolean, list or dictionary, depending on the context of the instruction.
 
 The JSON should have the following structure: 
-{
+
     "instruction": {
         "parameter1": "value 1",
         "parameter2": "value 2",
         ...
     }
-}
-Replace instruction with the name of the instruction you want to execute and add the necessary parameters for that instruction.
+    
+Replace the instruction key name with the name of the instruction you want to execute and add the necessary parameters for that instruction.
 
 The possible instructions are:
 - "print": Print a message to the console. The parameter is "message" (string).
 - "create_node": Create a new node in the scene tree. The parameters are "node_type" (string) and "node_name" (string).
 - "remove_node": Remove a node in the scene tree. The parameters are "node_name" (string).
+
+If the prompt is invalid to the instructions, return the following:
+{
+    "error": "Invalid prompt."
+}
 """
 
 json_response_structure = {
